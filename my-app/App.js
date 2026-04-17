@@ -1,53 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import TopRanked from "./TopRanked"
+import SearchPage from "./SearchPage";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
 
-  const [films, setFilms] = useState([]);
-
-  useEffect(() => {
-    getFilms()    
-  }, [])
-
-  const getFilms = () => {
-    const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-      }
-    };
-
-    fetch(url, options)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setFilms(data.results);
-      })
-      .then(() => {
-        //console.log(films);
-      })
-  }
-
   return (
-    <View style={styles.container}>
-      <FlatList data = {films} 
-        renderItem = {({item}) => 
-          <View>
-            <Text >{item.original_title}</Text>
-            </View>}/>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name = "Top Ranked" component={TopRanked}/>
+        <Tab.Screen name = "Search" component={SearchPage}/>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
