@@ -1,3 +1,10 @@
+// ------------------------------------------------------
+// TEMP VERSION: Local-only search screen
+// This does NOT use the TMDB API yet.
+// Replace the local movies[] array with a real fetch()
+// with the API key
+// ------------------------------------------------------
+
 import React, { useState } from "react";
 import { View, Text, TextInput, FlatList, StyleSheet } from "react-native";
 
