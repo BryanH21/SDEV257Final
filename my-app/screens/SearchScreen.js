@@ -1,25 +1,25 @@
-// ------------------------------------------------------
-// TEMP VERSION: Local-only search screen
-// This does NOT use the TMDB API yet.
-// Replace the local movies[] array with a real fetch()
-// with the API key
-// ------------------------------------------------------
 
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, FlatList, StyleSheet } from "react-native";
 
 export default function SearchScreen() {
-  // Local dummy movie data (no API key needed)
-  const movies = [
-    { id: 1, title: "The Shawshank Redemption" },
-    { id: 2, title: "The Godfather" },
-    { id: 3, title: "The Dark Knight" },
-    { id: 4, title: "Pulp Fiction" },
-    { id: 5, title: "Forrest Gump" },
-    { id: 6, title: "Inception" },
-  ];
-
+  const [movies, setMovies] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  // Fetch Top Rated Movies from TMDB KEY!!!!!!!!!
+  useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=KEY go HERE"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.results) {
+          setMovies(data.results);
+        }
+      })
+      .catch((err) => console.log("TMDB API ERROR:", err));
+  }, []);
 
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchText.toLowerCase())
