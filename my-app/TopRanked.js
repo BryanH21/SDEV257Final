@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { Text, View, FlatList} from 'react-native';
+import styles from './styles';
 
 export default function TopRanked() {
 
@@ -34,26 +35,18 @@ export default function TopRanked() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList data = {films} 
         renderItem = {({item}) => 
           <View style = {styles.movie}>
-            <Text style = {styles.header}>{item.title + " (" + item.release_date.slice(0, 4) + ")"}</Text>
-            <Text>{item.overview}</Text>
+            <View style={styles.header}> 
+              <Text style={styles.title}>{item.title + " (" + item.release_date.slice(0, 4) + ")"}</Text>
+              <Text style={styles.rating}> Rating: {item.vote_average}</Text>
+            </View>
+            <Text style={styles.overview}>{item.overview}</Text>
           </View>}
         />
-      <StatusBar style="auto" />
+      <StatusBar />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  movie:{
-    margin: 10,
-    padding: 10
-  },
-  header:{
-    fontWeight:'bold',
-    fontSize: 16
-  }
-});
