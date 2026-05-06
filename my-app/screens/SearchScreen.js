@@ -7,10 +7,19 @@ export default function SearchScreen() {
   const [movies, setMovies] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  
+
   // Fetch Top Rated Movies from TMDB KEY!!!!!!!!!
   useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZjA4Nzg0Y2IyYTg0NmEzYTg5Y2U2NDEzZjVhN2ZhYyIsIm5iZiI6MTc3NTkyMzU5Mi40Njg5OTk5LCJzdWIiOiI2OWRhNzE4ODk2MjAwMWJhODJjNzMxOTkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1gW5LoqdkmE2t_9zHBByLj22HUbCicvZvUVmdO8nxNI'
+      }};
+
     fetch(
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=KEY go HERE"
+      "https://api.themoviedb.org/3/movie/top_rated", options
     )
       .then((res) => res.json())
       .then((data) => {
