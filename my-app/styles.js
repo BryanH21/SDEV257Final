@@ -38,4 +38,29 @@ export default StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  searchBoxContainer: {
+    borderBottomWidth: 2,
+  },
+  searchBox: {
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 2,
+    margin: 20,
+  },
+  movieText: {
+    fontSize: 18,
+    paddingVertical: 8,
+    textAlign: 'center',
+
+  },
+  movieItem: {
+    backgroundColor: 'lightgray',
+    borderBottomColor: "#333",
+    borderWidth: 2,
+    borderRadius: 25,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
 })
