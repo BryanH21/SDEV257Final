@@ -13,7 +13,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
   <Tab.Screen name="Top Ranked" component={TopRanked} />
-  <Tab.Screen name="Search" component={SearchPage} />
+  <Tab.Screen name="Search" component={SearchScreen} />
   <Tab.Screen name="Watchlist" component={WatchlistScreen} />
 </Tab.Navigator>
     </NavigationContainer>
